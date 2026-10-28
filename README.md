@@ -9,6 +9,44 @@ For the choices made where the assignment was open, see **[ASSUMPTIONS.md](ASSUM
 Interactive API docs are served at `/docs` once the app is running, and an exported copy of
 the OpenAPI spec is in [`docs/openapi.json`](docs/openapi.json).
 
+## Quick Start
+
+From the project folder, create and activate a virtual environment:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+On Windows PowerShell, activate it with:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Install the packages and create your environment file:
+
+```bash
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+On Windows Command Prompt, use `copy .env.example .env` instead of `cp`.
+
+Generate a random JWT secret:
+
+```bash
+python -c "import secrets; print(secrets.token_urlsafe(48))"
+```
+
+Set `JWT_SECRET_KEY` in `.env` to the generated value, then start the app:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+Open <http://localhost:8000/docs> to explore and test the API.
+
 ## Features
 
 - Accounts with a system-managed balance that always starts at 0.
